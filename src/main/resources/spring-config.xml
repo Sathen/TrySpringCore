@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="client" class="com.epam.spring.bean.Client">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Bob"/>
+    </bean>
+
+    <bean id="eventLogger" class="com.epam.spring.logger.ConsoleEventLogger"/>
+
+    <bean id="app" class="com.epam.spring.bean.App">
+        <constructor-arg ref="client"/>
+        <constructor-arg ref="eventLogger"/>
+    </bean>
+
+    <bean id="event" class="com.epam.spring.bean.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+    <bean id="fileEventLogger" class="com.epam.spring.logger.FileEventLogger" init-method="init">
+        <constructor-arg value="logger.txt"/>
+    </bean>
+    <bean id="cacheFileEventLogger" class="com.epam.spring.logger.CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="logger.txt"/>
+        <constructor-arg value="3"/>
+    </bean>
+
+</beans>
