@@ -2,11 +2,21 @@ package com.epam.spring.bean;
 
 public class Client {
 
-    private int id ;
+    private int id;
     private String fullName;
+    private String greeting;
+
 
     public Client() {
 
+    }
+
+    public String getGreeting() {
+        return greeting;
+    }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
     }
 
     public Client(int id, String fullName) {

@@ -13,7 +13,7 @@ public class Event {
     private Date date;
     private DateFormat dateFormat;
 
-    public Event(Date dat,  DateFormat dateFormat) {
+    public Event(Date date,  DateFormat dateFormat) {
         this.id = new Random().nextInt();
         this.date = date;
         this.dateFormat = dateFormat;

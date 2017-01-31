@@ -1,31 +1,49 @@
 package com.epam.spring.bean;
 
+import com.epam.spring.logger.ConsoleEventLogger;
 import com.epam.spring.logger.EventLogger;
-import org.springframework.context.ApplicationContext;
+import com.epam.spring.logger.EventType;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class App {
     private Client client;
     private EventLogger eventLogger;
+    private Map<EventType,EventLogger> loggers;
 
-    public App(Client client, EventLogger eventLogger) {
+    public App(Client client, EventLogger eventLogger, Map<EventType,EventLogger> loggers) {
         this.client = client;
         this.eventLogger = eventLogger;
+        this.loggers = loggers;
     }
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
 
         App app = (App) ctx.getBean("app");
-        Event event = (Event) ctx.getBean("event");
-        event.setMsg("Our client is 1");
-        app.logEvent(event);
+        try {
+            app.logEvent("Our client is 1",ctx, EventType.INFO);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            ctx.close();
+        }
+
     }
 
-    private void logEvent(Event event){
+    private void logEvent(String msg, ConfigurableApplicationContext ctx, EventType type) throws IOException {
+        eventLogger = loggers.get(type);
 
-        String message = event.getMsg().replaceAll(String.valueOf(client.getId()), client.getFullName());
+        if(eventLogger == null){
+            eventLogger = new ConsoleEventLogger();
+        }
+
+        Event event = (Event) ctx.getBean("event");
+        String message = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
         event.setMsg(message);
         eventLogger.logEvent(event);
     }
