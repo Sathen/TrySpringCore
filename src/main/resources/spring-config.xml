@@ -11,7 +11,13 @@
 
     <bean id="app" class="com.epam.spring.bean.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg ref="fileEventLogger"/>
+        <constructor-arg >
+            <map>
+                <entry key="INFO" value-ref="eventLogger"/>
+                <entry key="ERROR" value-ref="combineEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
 </beans>

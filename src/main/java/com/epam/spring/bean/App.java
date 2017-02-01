@@ -26,7 +26,7 @@ public class App {
 
         App app = (App) ctx.getBean("app");
         try {
-            app.logEvent("Our client is 1",ctx, EventType.INFO);
+            app.logEvent("Our client is 1",ctx, EventType.ERROR);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }finally {
