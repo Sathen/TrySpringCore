@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <import resource="loggers.xml"/>
-    <bean id="client" class="com.epam.spring.bean.Client">
-        <constructor-arg value="1"/>
-        <constructor-arg value="Bob"/>
-        <property name="greeting" value="Hello there"/>
-    </bean>
 
-    <bean id="app" class="com.epam.spring.bean.App">
-        <constructor-arg ref="client"/>
-        <constructor-arg ref="fileEventLogger"/>
-        <constructor-arg >
-            <map>
-                <entry key="INFO" value-ref="eventLogger"/>
-                <entry key="ERROR" value-ref="combineEventLogger"/>
-            </map>
-        </constructor-arg>
-    </bean>
+        <context:annotation-config/>
+    <!--<import resource="loggers.xml"/>-->
+
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:client.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+
+        <!--<property name="ignoreResourceNotFound" value="true"/>-->
+        <!--<property name="systemPropertiesMode" value="override"/>-->
+
+    <!--</bean>-->
+    <!--<bean id="client" class="com.epam.spring.bean.Client"-->
+          <!--c:id="${id}" c:fullName="${name}" p:greeting="${greeting}">-->
+    <!--</bean>-->
+
+    <!--<util:map id="loggerMap">-->
+        <!--<entry key="INFO" value-ref="eventLogger"/>-->
+        <!--<entry key="ERROR" value-ref="combineEventLogger"/>-->
+    <!--</util:map>-->
+
+    <!--<bean id="app" class="com.epam.spring.bean.App" c:client-ref="client">-->
+        <!--<constructor-arg ref="fileEventLogger"/>-->
+        <!--<constructor-arg ref="loggerMap"/>-->
+    <!--</bean>-->
 
 </beans>

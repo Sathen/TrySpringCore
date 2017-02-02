@@ -1,11 +1,14 @@
 package com.epam.spring.bean;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
-
+@Component
 public class Event {
 
     private int id ;
@@ -13,6 +16,8 @@ public class Event {
     private Date date;
     private DateFormat dateFormat;
 
+
+    @Autowired
     public Event(Date date,  DateFormat dateFormat) {
         this.id = new Random().nextInt();
         this.date = date;

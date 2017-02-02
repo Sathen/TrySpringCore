@@ -3,16 +3,27 @@ package com.epam.spring.bean;
 import com.epam.spring.logger.ConsoleEventLogger;
 import com.epam.spring.logger.EventLogger;
 import com.epam.spring.logger.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Map;
-
+@Component
 public class App {
+    @Autowired
+    @Qualifier("client")
     private Client client;
+    @Autowired
+    @Qualifier("eventLogger")
     private EventLogger eventLogger;
+
+    @Resource(name = "loggerMap")
     private Map<EventType,EventLogger> loggers;
+
 
     public App(Client client, EventLogger eventLogger, Map<EventType,EventLogger> loggers) {
         this.client = client;
@@ -22,16 +33,11 @@ public class App {
 
     public static void main(String[] args) {
 
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
+        AnnotationConfigApplicationContext  ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        ctx.scan("com.epam.spring");
+        ctx.refresh();
 
-        App app = (App) ctx.getBean("app");
-        try {
-            app.logEvent("Our client is 1",ctx, EventType.ERROR);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }finally {
-            ctx.close();
-        }
+
 
     }
 
