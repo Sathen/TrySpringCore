@@ -20,7 +20,6 @@ public class App {
     @Autowired
     @Qualifier("eventLogger")
     private EventLogger eventLogger;
-
     @Resource(name = "loggerMap")
     private Map<EventType,EventLogger> loggers;
 
@@ -37,6 +36,13 @@ public class App {
         ctx.scan("com.epam.spring");
         ctx.refresh();
 
+        App app = (App) ctx.getBean("app");
+
+        try {
+            app.logEvent("Hi 1",ctx,EventType.INFO);
+        } catch (IOException e) {
+            throw  new RuntimeException(e);
+        }
 
 
     }

@@ -1,9 +1,8 @@
 package com.epam.spring.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class Client {
 
 
@@ -22,6 +21,7 @@ public class Client {
         this.id = id;
         this.fullName = fullName;
     }
+
 
     public String getGreeting() {
         return greeting;
