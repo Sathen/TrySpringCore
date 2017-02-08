@@ -56,5 +56,5 @@ public class Event {
         sb.append(", date=").append(dateFormat.format(date));
         sb.append('}');
         return sb.toString();
-    }
+ }
 }

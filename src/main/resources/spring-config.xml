@@ -1,3 +1,4 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:util="http://www.springframework.org/schema/util"
@@ -6,31 +7,31 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <context:annotation-config/>
-    <!--<import resource="loggers.xml"/>-->
+    &lt;!&ndash;<import resource="loggers.xml"/>&ndash;&gt;
 
-    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="locations">-->
-            <!--<list>-->
-                <!--<value>classpath:client.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
+    &lt;!&ndash;<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">&ndash;&gt;
+        &lt;!&ndash;<property name="locations">&ndash;&gt;
+            &lt;!&ndash;<list>&ndash;&gt;
+                &lt;!&ndash;<value>classpath:client.properties</value>&ndash;&gt;
+            &lt;!&ndash;</list>&ndash;&gt;
+        &lt;!&ndash;</property>&ndash;&gt;
 
-        <!--<property name="ignoreResourceNotFound" value="true"/>-->
-        <!--<property name="systemPropertiesMode" value="override"/>-->
+        &lt;!&ndash;<property name="ignoreResourceNotFound" value="true"/>&ndash;&gt;
+        &lt;!&ndash;<property name="systemPropertiesMode" value="override"/>&ndash;&gt;
 
-    <!--</bean>-->
-    <!--<bean id="client" class="com.epam.spring.bean.Client"-->
-          <!--c:id="${id}" c:fullName="${name}" p:greeting="${greeting}">-->
-    <!--</bean>-->
+    &lt;!&ndash;</bean>&ndash;&gt;
+    &lt;!&ndash;<bean id="client" class="com.epam.spring.bean.Client"&ndash;&gt;
+          &lt;!&ndash;c:id="${id}" c:fullName="${name}" p:greeting="${greeting}">&ndash;&gt;
+    &lt;!&ndash;</bean>&ndash;&gt;
 
-    <!--<util:map id="loggerMap">-->
-        <!--<entry key="INFO" value-ref="eventLogger"/>-->
-        <!--<entry key="ERROR" value-ref="combineEventLogger"/>-->
-    <!--</util:map>-->
+    &lt;!&ndash;<util:map id="loggerMap">&ndash;&gt;
+        &lt;!&ndash;<entry key="INFO" value-ref="eventLogger"/>&ndash;&gt;
+        &lt;!&ndash;<entry key="ERROR" value-ref="combineEventLogger"/>&ndash;&gt;
+    &lt;!&ndash;</util:map>&ndash;&gt;
 
-    <!--<bean id="app" class="com.epam.spring.bean.App" c:client-ref="client">-->
-        <!--<constructor-arg ref="fileEventLogger"/>-->
-        <!--<constructor-arg ref="loggerMap"/>-->
-    <!--</bean>-->
+    &lt;!&ndash;<bean id="app" class="com.epam.spring.bean.App" c:client-ref="client">&ndash;&gt;
+        &lt;!&ndash;<constructor-arg ref="fileEventLogger"/>&ndash;&gt;
+        &lt;!&ndash;<constructor-arg ref="loggerMap"/>&ndash;&gt;
+    &lt;!&ndash;</bean>&ndash;&gt;
 
-</beans>
+</beans>-->

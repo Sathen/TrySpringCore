@@ -1,24 +1,27 @@
 package com.epam.spring.bean;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Client {
 
-
-    private int id;
-    @Autowired
+    @Id
+    @GeneratedValue(generator= "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "id",nullable = false)
+    private Long id;
     private String fullName;
-    @Autowired
     private String greeting;
 
-
     public Client() {
-
     }
 
-    public Client(int id, String fullName) {
-        this.id = id;
+    public Client(String fullName) {
         this.fullName = fullName;
     }
 
@@ -32,11 +35,11 @@ public class Client {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -3,7 +3,7 @@ package com.epam.spring.logger;
 import com.epam.spring.bean.Event;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("сonsoleEventLogger")
 public class ConsoleEventLogger  implements EventLogger {
 
     public void logEvent(Event event){
